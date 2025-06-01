@@ -10,7 +10,7 @@ const DOMAIN = process.env.COOKIE_DOMAIN;
 app.use(cors({ origin: ['https://admin.cricstore.icu', 'https://app.cricstore.icu'], credentials: true }));
 app.set('trust proxy', 1);
 
-app.use(['/auth', '/users', '/stores'], createProxyMiddleware({
+app.use(['/auth', '/users', '/stores', '/.well-known'], createProxyMiddleware({
   target: process.env.AUTH_URL,
   changeOrigin: true,
   cookieDomainRewrite: DOMAIN,
