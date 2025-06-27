@@ -30,6 +30,19 @@ app.use(['/orders', '/customer', '/coupons'], createProxyMiddleware({
   cookieDomainRewrite: DOMAIN,
 }));
 
+app.use(['/notify'], createProxyMiddleware({
+    target: process.env.NOTIFICATION_URL,
+    changeOrigin: true,
+    cookieDomainRewrite: DOMAIN,
+}));
+
+
+app.use(['/order-update'], createProxyMiddleware({
+    target: process.env.WEBSOCKET_URL,
+    changeOrigin: true,
+    cookieDomainRewrite: DOMAIN,
+}));
+
 
 app.listen(PORT, () => {
   console.log(`Gateway running at http://localhost:${PORT}`);
